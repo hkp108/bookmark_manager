@@ -1,12 +1,11 @@
 require 'sinatra/base'
-require 'data_mapper'
-require 'dm-postgres-adapter'
+require './app/models/bookmarks'
 
 class Gloo < Sinatra::Base
   # include DataMapper::Resource
 
   get '/' do
-    # Bookmarks.all
+    @bookmarks = Bookmarks.all
     erb :index
   end
 
@@ -15,7 +14,8 @@ class Gloo < Sinatra::Base
   end
 
   post '/link-form' do
-    # Bookmarks.create(url: params[:url])
+    p params
+    Bookmarks.create(url: params[:url])
     redirect '/link_confirmation'
   end
 
