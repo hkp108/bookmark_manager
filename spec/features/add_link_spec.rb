@@ -3,6 +3,7 @@ feature 'add link' do
     visit '/'
     click_button 'Add link'
     expect(page).to have_field('url')
+    expect(page).to have_field('title')
     expect(page).to have_button('Add')
   end
 end

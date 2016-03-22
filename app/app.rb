@@ -16,7 +16,7 @@ class Gloo < Sinatra::Base
 
   post '/link-form' do
     p params
-    Bookmarks.create(url: params[:url])
+    Bookmarks.create(url: params[:url], title: params[:title])
     redirect '/link_confirmation'
   end
 
