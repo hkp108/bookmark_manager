@@ -5,3 +5,6 @@ gem 'dm-postgres-adapter'
 gem 'rspec-sinatra'
 gem 'capybara'
 gem 'byebug'
+
+gem 'database_cleaner'
+gem 'dm-transactions'
