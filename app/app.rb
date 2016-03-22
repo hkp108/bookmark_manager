@@ -6,6 +6,7 @@ class Gloo < Sinatra::Base
 
   get '/' do
     @bookmarks = Bookmarks.all
+
     erb :index
   end
 
@@ -22,6 +23,7 @@ class Gloo < Sinatra::Base
   get '/link_confirmation' do
     erb :link_confirmation
   end
+
 
   # start the server if ruby file executed directly
   run! if app_file == $0

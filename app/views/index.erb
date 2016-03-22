@@ -1,3 +1,6 @@
+<% @bookmarks.each do |obj| %>
+<li><%= obj.url %></li>
+<% end %>
 There are no links
 <form action='/add-link'>
   <input type = 'submit' value='Add link'>
