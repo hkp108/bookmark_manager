@@ -8,13 +8,15 @@ class User
   property :name, String
   property :email, String, format: :email_address, required: true, unique: true,
             messages: {
-              format: 'Invalid email format.'
+              format: 'Invalid email format.',
+              is_unique: 'Email already registered'
             }
   property :password_hash, Text
 
   attr_accessor :password_confirmation
   attr_reader :password
-  validates_confirmation_of :password
+  validates_confirmation_of :password,
+  :message => "Passwords did not match."
 
   def password=(password)
     @password = password

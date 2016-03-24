@@ -53,10 +53,12 @@ class BookmarkManager < Sinatra::Base
       session[:user_id] = @user.id
       redirect '/links'
     else
+      @user.errors.each { |e| flash.now[:password_mismatch] = e.first }
+      # p @user.errors[:email].first
       # flash.now[:invalid_email] = 'Invalid email format.' if @user.valid?(:email)
       # flash.now[:duplicate_email] = 'Email already registered.' if @user.valid?
-      flash.now[:password_mismatch] = 'Passwords did not match.' unless @user.valid?
-      
+      # flash.now[:password_mismatch] = 'Passwords did not match.' #unless @user.valid?
+
       erb :sign_up
     end
   end
