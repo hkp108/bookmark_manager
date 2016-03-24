@@ -1,5 +1,10 @@
-<% if flash.now[:password_mismatch] %>
-  <p><%= flash.now[:password_mismatch] %></p>
+<% if flash[:errors] && !flash[:errors].empty? %>
+  Please refer to the following errors below:
+  <ul id='errors'>
+    <% flash.now[:errors].each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
 <% end %>
 
 
