@@ -24,3 +24,9 @@ def sign_up_invalid_email(email: nil)
   fill_in :password_confirmation, with: 'fish'
   click_button 'Sign up'
 end
+
+def sign_in(email: email, password: password)
+  visit '/sign-in'
+  fill_in :email, with: email
+  fill_in :password, with: password
+end

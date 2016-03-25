@@ -9,6 +9,9 @@
     <% if current_user %>
       <h1>Welcome <%= current_user.name %></h1>
     <% end %>
+    <% if !current_user %>
+      <a href="/sign-in">Sign in</a>
+    <% end %>
     <%= yield %>
   </body>
 </html>

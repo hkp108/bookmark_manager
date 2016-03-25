@@ -16,6 +16,7 @@ class BookmarkManager < Sinatra::Base
 
   get '/links' do
     @links = Link.all
+    flash[:signed_in]
     erb(:links)
   end
 
@@ -39,6 +40,23 @@ class BookmarkManager < Sinatra::Base
     erb :links
   end
 
+  get '/sign-in' do
+    erb :sign_in
+  end
+
+  post '/sign-in' do
+    # p authenticated_user
+    # p params
+    if User.authenticate(email: params[:email], password: params[:password])
+      session[:user_id] = authenticated_user.id
+      flash.next[:signed_in] = "Successfully signed in as #{authenticated_user.email}"
+       redirect '/links'
+    else
+      flash.now[:errors] = "Invalid email or password. Please try again."
+      erb :sign_in
+    end
+  end
+
   get '/sign_up' do
     @user = User.new
     erb :sign_up
@@ -60,8 +78,14 @@ class BookmarkManager < Sinatra::Base
 
   helpers do
     def current_user
-      @current_user ||= User.get(session[:user_id])
+      @current_user = User.get(session[:user_id])
     end
+
+  end
+
+  private
+  def authenticated_user
+    User.authenticate(email: params[:email], password: params[:password])
   end
 
   # start the server if ruby file executed directly
