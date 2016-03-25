@@ -1,6 +1,9 @@
-<% if flash[:signed_in] %>
-<%= flash[:signed_in] %>
+<% if flash[:signed_status] %>
+<%= flash[:signed_status] %>
 <% end %>
+<!-- <% if current_user %>
+<br><a href="/sign-out">Sign out</a>
+<% end %> -->
 <h2>Links...</h2>
 
 <ul id="links">

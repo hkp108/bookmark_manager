@@ -7,11 +7,11 @@
 
   <body>
     <% if current_user %>
-      <h1>Welcome <%= current_user.name %></h1>
+      <h1>Welcome <%= current_user.name %></h1><a href="/sign-out">Sign out</a>
     <% end %>
-    <% if !current_user %>
+    <!-- <% if !current_user %>
       <a href="/sign-in">Sign in</a>
-    <% end %>
+    <% end %> -->
     <%= yield %>
   </body>
 </html>
